@@ -251,12 +251,20 @@ def render_executive_dashboard():
                 colorbar=dict(title="Campaigns")
             ))
 
+            # Calculate dynamic height based on number of vessels
+            n_vessels = len(vessel_year_matrix.index)
+            dynamic_height = max(400, n_vessels * 30)  # At least 30px per vessel, minimum 400px
+
             fig.update_layout(
                 title="Number of Campaigns by Vessel and Year",
                 xaxis_title="Year",
                 yaxis_title="Vessel",
-                height=300,
-                plot_bgcolor='white'
+                height=dynamic_height,
+                plot_bgcolor='white',
+                yaxis=dict(
+                    tickmode='linear',  # Show all ticks
+                    dtick=1  # Show every vessel
+                )
             )
 
             st.plotly_chart(fig, use_container_width=True)
