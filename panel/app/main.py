@@ -955,7 +955,7 @@ def render_about_page():
             pass
 
         st.markdown("""
-        #### 👩🏽‍🔬 Principal Investigator
+        #### 👩🏽‍🔬 GIFT Principal Investigator
 
         **Dr. I. Emma Huertas**
 
@@ -977,7 +977,7 @@ def render_about_page():
             pass
 
         st.markdown("""
-        #### 👩🏻‍🔬 Coordinator
+        #### 👩🏻‍🔬 GIFT Coordinator
 
         **Dr. Susana Flecha**
 
@@ -998,6 +998,36 @@ def render_about_page():
     """)
 
 
+def render_footer():
+    """Render footer with dashboard creator info"""
+    st.markdown("---")
+    st.markdown("""
+    <div style='text-align: center; padding: 20px 0;'>
+        <p style='font-size: 1.1rem; margin-bottom: 10px;'><strong>Dashboard by:</strong></p>
+        <p style='font-size: 1.2rem; font-weight: bold; margin-bottom: 10px;'>Dr. Susana Flecha</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+
+    with col3:
+        st.markdown("""
+        <div style='text-align: center;'>
+            <a href='https://github.com/susafle' target='_blank'>
+                <img src='https://img.shields.io/badge/GitHub-susafle-181717?style=for-the-badge&logo=github' alt='GitHub'>
+            </a>
+            <br>
+            <a href='https://www.linkedin.com/in/susana-flecha-b5b05a44/' target='_blank'>
+                <img src='https://img.shields.io/badge/LinkedIn-Susana%20Flecha-0077B5?style=for-the-badge&logo=linkedin' alt='LinkedIn'>
+            </a>
+            <br>
+            <a href='https://orcid.org/0000-0003-2826-5820' target='_blank'>
+                <img src='https://img.shields.io/badge/ORCID-0000--0003--2826--5820-A6CE39?style=for-the-badge&logo=orcid' alt='ORCID'>
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
+
+
 # ===== MAIN APPLICATION =====
 def main():
     """Main application entry point"""
@@ -1013,6 +1043,9 @@ def main():
 
     # Render main content
     render_main_content(selected_module)
+
+    # Render footer
+    render_footer()
 
 
 # ===== RUN APPLICATION =====
