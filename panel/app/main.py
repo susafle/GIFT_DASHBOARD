@@ -702,53 +702,51 @@ def render_main_content(selected_module):
 
                 st.markdown("---")
 
-                # Create interactive map using plotly
+                # Create interactive map using plotly with OpenStreetMap
                 import plotly.graph_objects as go
+
+                # Calculate map center and zoom
+                center_lat = stations['LATITUDE'].mean()
+                center_lon = stations['LONGITUDE'].mean()
+
+                # Normalize sizes for better visualization
+                min_size = 8
+                max_size = 30
+                sizes = stations['measurements'] / stations['measurements'].max() * (max_size - min_size) + min_size
 
                 fig = go.Figure()
 
-                # Add station markers
-                fig.add_trace(go.Scattergeo(
+                # Add station markers using Scattermapbox for high-resolution maps
+                fig.add_trace(go.Scattermapbox(
                     lon=stations['LONGITUDE'],
                     lat=stations['LATITUDE'],
                     text=stations['STATION-ID'],
                     customdata=stations['measurements'],
                     mode='markers',
                     marker=dict(
-                        size=stations['measurements'] / stations['measurements'].max() * 30 + 10,
+                        size=sizes,
                         color=stations['measurements'],
                         colorscale='Viridis',
                         showscale=True,
-                        colorbar=dict(title="Measurements"),
-                        line=dict(width=1, color='white')
+                        colorbar=dict(
+                            title="Measurements",
+                            x=1.02
+                        ),
+                        opacity=0.8,
+                        sizemode='diameter'
                     ),
                     hovertemplate='<b>%{text}</b><br>Lat: %{lat:.4f}<br>Lon: %{lon:.4f}<br>Measurements: %{customdata}<extra></extra>'
                 ))
 
-                # Calculate map center and zoom
-                center_lat = stations['LATITUDE'].mean()
-                center_lon = stations['LONGITUDE'].mean()
-
                 fig.update_layout(
                     title="GIFT Network Sampling Stations",
-                    geo=dict(
-                        projection_type='natural earth',
-                        showland=True,
-                        landcolor='rgb(220, 212, 185)',  # Beige/tan land
-                        coastlinecolor='rgb(80, 80, 80)',  # Dark coastline
-                        coastlinewidth=1.5,
-                        showocean=True,
-                        oceancolor='rgb(180, 210, 230)',  # Light blue ocean
-                        showlakes=True,
-                        lakecolor='rgb(160, 200, 220)',  # Lake blue
-                        showcountries=True,
-                        countrycolor='rgb(150, 150, 150)',  # Country borders
-                        showrivers=True,
-                        rivercolor='rgb(160, 200, 220)',
+                    mapbox=dict(
+                        style='open-street-map',  # High-resolution OpenStreetMap
                         center=dict(lat=center_lat, lon=center_lon),
-                        projection_scale=20
+                        zoom=8
                     ),
-                    height=600
+                    height=600,
+                    margin=dict(l=0, r=0, t=40, b=0)
                 )
 
                 st.plotly_chart(fig, use_container_width=True)
