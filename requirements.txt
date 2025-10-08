@@ -1,0 +1,24 @@
+# GIFT Oceanographic Intelligence Platform - Dependencies
+# Python 3.9+
+
+# ===== CORE FRAMEWORK =====
+streamlit>=1.29.0
+streamlit-option-menu>=0.3.6
+
+# ===== DATA MANIPULATION =====
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# ===== VISUALIZATION =====
+plotly>=5.17.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# ===== STATISTICS & ML =====
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+
+# ===== UTILITIES =====
+pyyaml>=6.0
+requests>=2.31.0

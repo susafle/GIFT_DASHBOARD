@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+panel/venv/
+
+# Streamlit
+.streamlit/secrets.toml
+panel/.streamlit/
+
+# Data files - DO NOT UPLOAD TO GITHUB
+panel/data/
+*.csv
+*.xlsx
+*.xls
+data/GIFT_database_prepared.csv
+panel/data/GIFT_database_prepared.csv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+.ropeproject
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# Unit test / coverage
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Image files - Include essential images for app
+# Note: Large images are included but will be compressed
+# panel/app/assets/img/
+
+# Logs
+*.log
+logs/
+*.out
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+tmp/
+temp/

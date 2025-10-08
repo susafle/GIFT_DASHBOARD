@@ -1,0 +1,125 @@
+# GIFT Oceanographic Intelligence Platform - Configuration
+
+# Application Settings
+app:
+  title: "GIFT Oceanographic Intelligence Platform"
+  subtitle: "Gibraltar Fixed Time Series - Marine Science Dashboard"
+  icon: "🌊"
+  layout: "wide"
+  initial_sidebar_state: "expanded"
+
+# Theme Settings
+theme:
+  primary_color: "#1e3c72"
+  background_color: "#ffffff"
+  secondary_background_color: "#f0f2f6"
+  text_color: "#262730"
+  font: "sans-serif"
+
+# Data Paths
+data:
+  raw_data: "../data/GIFT_database_prepared.csv"
+  cache_dir: "data/cache"
+
+# Oceanographic Parameters
+oceanography:
+  temperature:
+    column: "CTD TEMPERATURE (ITS-90)"
+    unit: "°C"
+    min: 10
+    max: 25
+  salinity:
+    column: "CTD SALINITY (PSS-78)"
+    unit: "PSS-78"
+    min: 35
+    max: 40
+  oxygen:
+    column: "DISSOLVED OXYGEN"
+    unit: "µM"
+    hypoxia_threshold: 60
+
+# Variables to exclude from analysis
+exclude_vars:
+  - "CRUISE-CODE"
+  - "STATION-Nº"
+  - "LONGITUDE"
+  - "LATITUDE"
+  - "BOTTOM DEPTH"
+  - "SD CH4"
+  - "SD N2O"
+  - "VESSEL_encoding"
+  - "SAMPLING DEPTH"
+  - "CTD PRESSURE (DBAR)"
+  - "MEAN CH4"
+  - "MEAN N2O"
+  - "YEAR"
+  - "MONTH"
+
+# Custom Color Palette (for all plots except T-S diagrams)
+custom_palette:
+  - "#0d3b66"  # Deep blue
+  - "#faf0ca"  # Cream
+  - "#f4d35e"  # Golden yellow
+  - "#ee964b"  # Orange
+  - "#f95738"  # Red-orange
+  - "#8c1c13"  # Dark red
+
+# Color Scales for T-S Diagrams only
+colorscales:
+  - "Viridis"
+  - "RdYlBu"
+  - "Greens"
+  - "Plasma"
+  - "Cividis"
+  - "Turbo"
+  - "Inferno"
+  - "Magma"
+  - "Rainbow"
+  - "Jet"
+  - "Electric"
+  - "Bluered"
+  - "Portland"
+  - "Blackbody"
+
+# Module Configuration
+modules:
+  executive:
+    enabled: true
+    name: "Executive Overview"
+    icon: "📊"
+  campaigns:
+    enabled: true
+    name: "Campaign Management"
+    icon: "🚢"
+  physical:
+    enabled: true
+    name: "Physical Oceanography"
+    icon: "🌡️"
+  biogeochem:
+    enabled: true
+    name: "Biogeochemistry"
+    icon: "🧪"
+  climate:
+    enabled: true
+    name: "Climate Gases"
+    icon: "🌍"
+  correlation:
+    enabled: true
+    name: "Correlation Analysis"
+    icon: "🔗"
+  geospatial:
+    enabled: true
+    name: "Geospatial Analysis"
+    icon: "🗺️"
+  temporal:
+    enabled: true
+    name: "Temporal Analysis"
+    icon: "📅"
+  clustering:
+    enabled: true
+    name: "Multivariate Clustering"
+    icon: "🧩"
+  quality:
+    enabled: true
+    name: "Data Quality"
+    icon: "✅"
