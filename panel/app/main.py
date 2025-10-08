@@ -994,7 +994,7 @@ def render_about_page():
 
     **Version**: 1.0.0
     **Last Updated**: October 2025
-    **License**: MIT
+    **License**: MIT License
     """)
 
 
