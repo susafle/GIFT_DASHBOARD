@@ -28,10 +28,10 @@ st.set_page_config(
     page_title="GIFT Intelligence Platform",
     page_icon="🌊",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # Auto-collapse on mobile
     menu_items={
-        'Get Help': 'https://github.com/yourusername/GIFT_EDA',
-        'Report a bug': 'https://github.com/yourusername/GIFT_EDA/issues',
+        'Get Help': 'https://github.com/susafle/GIFT_DASHBOARD',
+        'Report a bug': 'https://github.com/susafle/GIFT_DASHBOARD/issues',
         'About': """
         # GIFT Oceanographic Intelligence Platform
 
@@ -46,12 +46,69 @@ st.set_page_config(
     }
 )
 
+# Mobile viewport meta tag
+st.markdown("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+""", unsafe_allow_html=True)
+
 
 # ===== CUSTOM CSS STYLING =====
 def load_custom_css():
-    """Apply custom CSS styling"""
+    """Apply custom CSS styling with mobile responsiveness"""
     st.markdown("""
         <style>
+        /* Mobile-first responsive design */
+        @media (max-width: 768px) {
+            /* Adjust main title for mobile */
+            .main-title {
+                padding: 30px 15px !important;
+            }
+
+            .main-title h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .main-title p {
+                font-size: 0.9rem !important;
+            }
+
+            /* Make metrics stack vertically on mobile */
+            div[data-testid="column"] {
+                width: 100% !important;
+                flex: 100% !important;
+            }
+
+            /* Adjust sidebar for mobile */
+            section[data-testid="stSidebar"] {
+                width: 100% !important;
+            }
+
+            /* Make images responsive */
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            /* Adjust plot sizes */
+            div[data-testid="stPlotlyChart"] {
+                width: 100% !important;
+            }
+
+            /* Footer badges for mobile */
+            .footer-badges img {
+                width: 100% !important;
+                max-width: 200px !important;
+                margin: 5px 0 !important;
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .main-title h1 {
+                font-size: 2rem !important;
+            }
+        }
+
         /* Main title styling with background image */
         .main-title {
             background: linear-gradient(135deg, rgba(30, 60, 114, 0.85) 0%, rgba(42, 82, 152, 0.85) 25%, rgba(102, 126, 234, 0.85) 75%, rgba(118, 75, 162, 0.85) 100%),
@@ -97,6 +154,19 @@ def load_custom_css():
         /* Headers */
         h1, h2, h3 {
             color: #1e3c72;
+        }
+
+        /* Make all images responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive tables */
+        table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         /* Info boxes */
@@ -999,7 +1069,7 @@ def render_about_page():
 
 
 def render_footer():
-    """Render footer with dashboard creator info"""
+    """Render footer with dashboard creator info (mobile-responsive)"""
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center; padding: 20px 0;'>
@@ -1008,24 +1078,19 @@ def render_footer():
     </div>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-
-    with col3:
-        st.markdown("""
-        <div style='text-align: center;'>
-            <a href='https://github.com/susafle' target='_blank'>
-                <img src='https://img.shields.io/badge/GitHub-susafle-181717?style=for-the-badge&logo=github' alt='GitHub'>
-            </a>
-            <br>
-            <a href='https://www.linkedin.com/in/susana-flecha-b5b05a44/' target='_blank'>
-                <img src='https://img.shields.io/badge/LinkedIn-Susana%20Flecha-0077B5?style=for-the-badge&logo=linkedin' alt='LinkedIn'>
-            </a>
-            <br>
-            <a href='https://orcid.org/0000-0003-2826-5820' target='_blank'>
-                <img src='https://img.shields.io/badge/ORCID-0000--0003--2826--5820-A6CE39?style=for-the-badge&logo=orcid' alt='ORCID'>
-            </a>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class='footer-badges' style='text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;'>
+        <a href='https://github.com/susafle' target='_blank'>
+            <img src='https://img.shields.io/badge/GitHub-susafle-181717?style=for-the-badge&logo=github' alt='GitHub' style='max-width: 250px; width: 100%;'>
+        </a>
+        <a href='https://www.linkedin.com/in/susana-flecha-b5b05a44/' target='_blank'>
+            <img src='https://img.shields.io/badge/LinkedIn-Susana%20Flecha-0077B5?style=for-the-badge&logo=linkedin' alt='LinkedIn' style='max-width: 250px; width: 100%;'>
+        </a>
+        <a href='https://orcid.org/0000-0003-2826-5820' target='_blank'>
+            <img src='https://img.shields.io/badge/ORCID-0000--0003--2826--5820-A6CE39?style=for-the-badge&logo=orcid' alt='ORCID' style='max-width: 250px; width: 100%;'>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ===== MAIN APPLICATION =====
