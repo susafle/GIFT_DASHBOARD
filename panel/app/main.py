@@ -716,8 +716,8 @@ def render_main_content(selected_module):
 
                 fig = go.Figure()
 
-                # Add station markers using Scattermapbox for high-resolution maps
-                fig.add_trace(go.Scattermapbox(
+                # Add station markers using Scattermap (MapLibre) for high-resolution maps
+                fig.add_trace(go.Scattermap(
                     lon=stations['LONGITUDE'],
                     lat=stations['LATITUDE'],
                     text=stations['STATION-ID'],
@@ -740,7 +740,7 @@ def render_main_content(selected_module):
 
                 fig.update_layout(
                     title="GIFT Network Sampling Stations",
-                    mapbox=dict(
+                    map=dict(
                         style='open-street-map',  # High-resolution OpenStreetMap
                         center=dict(lat=center_lat, lon=center_lon),
                         zoom=8
